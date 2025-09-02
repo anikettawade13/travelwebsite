@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/demo/src/main/resources/static/style.css">
+    <link rel="stylesheet" href="/demo/src/main/resources/static/css/style.css">
     <title>AT's Travel Agency</title>
     <style>
        .header{
@@ -19,29 +19,36 @@
 <body>
     <header class="header">
       <nav class="navbar">
-        <div class="container"><h1 class="logo lg-heading text-light">AT's Travel Agency</h1>
-          <ul class="navitems">
-            <li class="navitem"><a href="./index.html">Home</a></li>
-            <li class="navitem"><a href="./about.html" target="_blank" rel="noopener noreferrer">About</a></li>
-            <li class="navitem"><a href="./contact.html" target="_blank" rel="noopener noreferrer">Contact</a></li>
-          </ul>
+        <div class="container">
+          <div class="left-section">
+            <h1 class="logo">AT's Travel Agency</h1>
+            <ul class="navitems">
+              <li class="navitem"><a href="./index.html">Home</a></li>
+              <li class="navitem"><a href="./about.html" target="_blank" rel="noopener noreferrer">About</a></li>
+              <li class="navitem"><a href="./contact.html" target="_blank" rel="noopener noreferrer">Contact</a></li>
+            </ul>
+          </div>
+          <div class="header-right">
+            <a href="login.html" class="btn login-btn">Log In / Sign Up</a>
+          </div>
+        </div>
       </nav>
       <div class="header_content">
-        <h1 class="lg-heading text-light">TRAVEL THE WORLD</h1>
-        <p class="info text-light">Travel the world with less expenses, we assure safety first.</p>
-        <a href="#" class="btn btn-primary text-red">Explore Places</a>
+        <h1>TRAVEL THE WORLD</h1>
+        <p>Travel the world with less expenses, we assure safety first.</p>
+        <a href="#showcase" class="btn btn-primary text-red">Explore Places</a>
       </div>
     </header>
 
 
-    <section class="showcase">
+    <section id="showcase" class="showcase">
       <div class="container">
         <div class="row row1">
           <div class="imgbox"><img src="/demo/src/main/resources/static/img/'London brige' Poster, picture, metal print, paint by tyara valparaiso _ Displate.jpeg" alt="London Bridge"></div>
           <div class="textbox">
             <h2 class="texth">UNITED KINGDOM,LONDON</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil facere iste ipsam libero labore voluptatum eius reprehenderit quae fugiat vel tempora incidunt ullam optio voluptas, dolorem velit animi laudantium at.</p>
-            <a href="./registration.html" class="btn2 btn-sec2">REGISTER</a>
+            <button class="btn2" data-destination="UNITED KINGDOM,LONDON" data-price="1200">BOOK NOW</button>
           </div>
         </div>
         <div class="row row2">
@@ -51,12 +58,52 @@
           <div class="textbox">
             <h2 class="texth">INDIA,AGRA</h2>
             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error, quia, minima est vel vero, ullam sit hic quasi minus necessitatibus incidunt quis quibusdam quo voluptas labore dolorum! Quae, numquam ipsum.</p>
-            <a href="./registration.html" class="btn2 btn-sec2">REGISTER</a>
+            <button class="btn2" data-destination="INDIA,AGRA" data-price="900">BOOK NOW</button>
           </div>
         </div>
       </div>
-    
-
     </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2>Book Your Trip to <span id="modalDestination"></span> - $<span id="modalPrice"></span></h2>
+        <form class="booking-form">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="checkin">Check-in Date</label>
+              <input type="date" id="checkin" name="checkin" required>
+            </div>
+            <div class="form-group">
+              <label for="checkout">Check-out Date</label>
+              <input type="date" id="checkout" name="checkout" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="guests">Number of Guests</label>
+            <select id="guests" name="guests" required>
+              <option value="1">1 Guest</option>
+              <option value="2">2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4 Guests</option>
+            </select>
+          </div>
+          <button type="submit" class="btn submit-booking-btn">Confirm Booking</button>
+        </form>
+      </div>
+    </div>
 </body>
 </html>
