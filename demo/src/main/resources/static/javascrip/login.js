@@ -19,9 +19,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
   loginForm.addEventListener('submit', function (event) {
     event.preventDefault();
-    // For demonstration, show an alert. In a real app, this would send to server.
-    alert('Login successful! Welcome to AT\'s Travel Agency.');
-    // Optionally, redirect or something
-    // window.location.href = 'index.html';
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    fetch('/api/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, password })
+    })
+    .then(response => response.text())
+    .then(data => {
+      alert(data);
+      if (data === 'Login successful') {
+        window.location.href = 'index.html';
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Login failed');
+    });
   });
 });

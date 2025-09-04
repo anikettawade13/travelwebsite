@@ -31,8 +31,34 @@ document.addEventListener('DOMContentLoaded', function () {
   // Handle form submission (for demonstration, prevent actual submission)
   bookingForm.addEventListener('submit', function (event) {
     event.preventDefault();
-    alert('Booking confirmed! Thank you.');
-    modal.style.display = 'none';
-    bookingForm.reset();
+
+    const bookingData = {
+      name: bookingForm.name.value,
+      email: bookingForm.email.value,
+      phone: bookingForm.phone.value,
+      checkinDate: bookingForm.checkin.value,
+      checkoutDate: bookingForm.checkout.value,
+      guests: parseInt(bookingForm.guests.value),
+      destination: modalDestination.textContent,
+      price: parseFloat(modalPrice.textContent)
+    };
+
+    fetch('/api/bookings', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bookingData)
+    })
+    .then(response => response.text())
+    .then(data => {
+      alert(data);
+      modal.style.display = 'none';
+      bookingForm.reset();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('Booking failed');
+    });
   });
 });
